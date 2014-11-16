@@ -5,11 +5,11 @@ TB=inz.tar
 ZA=inz.zip
 
 # remove tarball if exists
-if [ -f $TB ]
+if [ -f $TB ];
 then
 	echo "$TB exists, removing..."
 	rm -f $TB
-	if [ $? -ne 0 ]
+	if [ $? -ne 0 ];
 	then
 		echo "ERROR: $TB could not be removed, quitting..."
 		exit 2
@@ -17,11 +17,11 @@ then
 fi
 
 # remove zip archve if exists
-if [ -f $ZA ]
+if [ -f $ZA ];
 then
 	echo "$ZA exists, removing..."
 	rm -f $ZA
-	if [ $? -ne 0 ]
+	if [ $? -ne 0 ];
 	then
 		echo "ERROR: $ZA could not be removed, quitting..."
 		exit 2
@@ -36,7 +36,7 @@ LS=`ls -1A | grep -v ^.git`
 echo -n "Password: "
 read -s PASS
 echo
-if [ -z $PASS ]
+if [ -z $PASS ];
 then
 	echo "ERROR: no password given, quitting..."
 	exit 22
@@ -45,7 +45,7 @@ fi
 # create tarball
 echo "Creating tarball..."
 tar -cf $TB $LS
-if [ $? -ne 0 ]
+if [ $? -ne 0 ];
 then
 	echo "ERROR: unable to create tarball, quitting..."
 	exit 5
@@ -54,18 +54,18 @@ fi
 # create archive
 echo "Creating archive..."
 zip -P $PASS $ZA $TB
-if [ $? -ne 0 ]
+if [ $? -ne 0 ];
 then
 	echo "ERROR: unable to create archive, quitting..."
 	exit 5
 fi
 
 # remove tarball if exists
-if [ -f $TB ]
+if [ -f $TB ];
 then
 	echo "$TB tarball cleanup..."
 	rm -f $TB
-	if [ $? -ne 0 ]
+	if [ $? -ne 0 ];
 	then
 		echo "ERROR: $TB could not be removed"
 	fi
@@ -74,11 +74,11 @@ fi
 # commmit
 echo "Commiting..."
 git commit -a --no-edit --allow-empty-message
-if [ $? -eq 1 ]
+if [ $? -eq 1 ];
 then
 	echo "no changes to commit, quitting..."
 	exit 0
-elif [[ $? -ne 9927 || $? -ne 0 ]]
+elif [ $? -ne 9927 || $? -ne 0 ];
 then
 	echo "ERROR: unable to commit changes, quitting..."
 	exit 1
