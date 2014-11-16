@@ -1,3 +1,89 @@
 #!/bin/bash
 
+# output files
+TB=inz.tar
+ZA=inz.zip
 
+# remove tarball if exists
+if [ -f $TB ]
+then
+	echo "$TB exists, removing..."
+	rm -f $TB
+	if [ $? -ne 0 ]
+	then
+		echo "ERROR: $TB could not be removed, quitting..."
+		exit 2
+	fi
+fi
+
+# remove zip archve if exists
+if [ -f $ZA ]
+then
+	echo "$ZA exists, removing..."
+	rm -f $ZA
+	if [ $? -ne 0 ]
+	then
+		echo "ERROR: $ZA could not be removed, quitting..."
+		exit 2
+	fi
+fi
+
+
+# get file list
+LS=`ls -1A | grep -v ^.git`
+
+# get password
+echo -n "Password: "
+read -s PASS
+echo
+if [ -z $PASS ]
+then
+	echo "ERROR: no password given, quitting..."
+	exit 22
+fi
+
+# create tarball
+echo "Creating tarball..."
+tar -cf $TB $LS
+if [ $? -ne 0 ]
+then
+	echo "ERROR: unable to create tarball, quitting..."
+	exit 5
+fi
+
+# create archive
+echo "Creating archive..."
+zip -P $PASS $ZA $TB
+if [ $? -ne 0 ]
+then
+	echo "ERROR: unable to create archive, quitting..."
+	exit 5
+fi
+
+# remove tarball if exists
+if [ -f $TB ]
+then
+	echo "$TB tarball cleanup..."
+	rm -f $TB
+	if [ $? -ne 0 ]
+	then
+		echo "ERROR: $TB could not be removed"
+	fi
+fi
+
+# commmit
+echo "Commiting..."
+git commit -a --allow-empty-message
+if [ $? -eq 1 ]
+then
+	echo "no changes to commit, quitting..."
+#	exit 0
+elif [ $? -ne 0 ]
+then
+	echo "ERROR: unable to commit changes, quitting..."
+	exit 1
+fi
+
+# push
+echo "Pushing..."
+git push -q https://7h3v01d:$PASS@github.com/7h3v01d/inz.git master
