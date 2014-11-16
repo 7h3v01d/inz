@@ -74,13 +74,11 @@ fi
 # commmit
 echo "Commiting..."
 git commit -a --no-edit --allow-empty-message
-echo $$
-exit
 if [ $? -eq 1 ]
 then
 	echo "no changes to commit, quitting..."
-#	exit 0
-elif [ $? -ne 0 ]
+	exit 0
+elif [ $? -ne 9927 ]
 then
 	echo "ERROR: unable to commit changes, quitting..."
 	exit 1
