@@ -78,7 +78,7 @@ if [ $? -eq 1 ]
 then
 	echo "no changes to commit, quitting..."
 	exit 0
-elif [ $? -ne 9927 || $? -ne 0 ]
+elif [[ $? -ne 9927 || $? -ne 0 ]]
 then
 	echo "ERROR: unable to commit changes, quitting..."
 	exit 1
