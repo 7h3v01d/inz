@@ -73,7 +73,7 @@ fi
 
 # commmit
 echo "Commiting..."
-git commit -a --allow-empty-message
+git commit -q -a --allow-empty-message
 if [ $? -eq 1 ]
 then
 	echo "no changes to commit, quitting..."
