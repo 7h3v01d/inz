@@ -75,7 +75,7 @@ fi
 echo "Commiting..."
 git commit -a --no-edit --allow-empty-message
 case "$?" in
-	0 | 1)
+	1)
 		echo "no changes to commit, quitting..."
 		exit 0
 	;;
