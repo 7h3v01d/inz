@@ -80,7 +80,7 @@ case "$?" in
 		exit 0
 	;;
 	*)
-		echo "ERROR: unable to commit changes, quitting..."
+		echo "ERROR: unable to commit changes, quitting... $?"
 		exit 1
 	;;
 esac
