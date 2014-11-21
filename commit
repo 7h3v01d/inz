@@ -76,8 +76,7 @@ echo "Commiting..."
 git commit -a --no-edit --allow-empty-message
 echo "git-commit: $RET"
 case "$?" in
-	0)
-	1)
+	0 | 1)
 		echo "no changes to commit, quitting..."
 		exit 0
 	;;
