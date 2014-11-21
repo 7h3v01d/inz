@@ -83,7 +83,7 @@ then
 	echo "ERROR: unable to commit changes, quitting..."
 	exit 1
 fi
-
+exit 0 #
 # push
 echo "Pushing..."
 git push -q https://7h3v01d:$PASS@github.com/7h3v01d/inz.git master
