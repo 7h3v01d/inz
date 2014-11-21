@@ -78,7 +78,7 @@ case "$?" in
 	0)
 	;;
 	1)
-		echo "no changes to commit, quitting..."
+		echo "No changes to commit, quitting..."
 		exit 0
 	;;
 	*)
@@ -109,4 +109,4 @@ then
 fi
 
 # done
-echo "done!"
+echo "Done!"
