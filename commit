@@ -74,17 +74,19 @@ fi
 # commmit
 echo "Commiting..."
 git commit -a --no-edit --allow-empty-message
-RET=$?
 echo "git-commit: $RET"
-if [ $RET -eq 1 ];
-then
-	echo "no changes to commit, quitting..."
-	exit 0
-elif [ $RET -ne 9927 -a $? -ne 0 ];
-then
-	echo "ERROR: unable to commit changes, quitting..."
-	exit 1
-fi
+case "$?" in
+	0)
+	1)
+		echo "no changes to commit, quitting..."
+		exit 0
+	;;
+	*)
+		echo "ERROR: unable to commit changes, quitting..."
+		exit 1
+	;;
+esac
+
 exit 0 #
 # push
 echo "Pushing..."
