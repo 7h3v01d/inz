@@ -76,7 +76,6 @@ echo "Commiting..."
 git commit -a --no-edit --allow-empty-message
 case "$?" in
 	0)
-		echo "changes commited"
 	;;
 	1)
 		echo "no changes to commit, quitting..."
@@ -88,7 +87,6 @@ case "$?" in
 	;;
 esac
 
-exit 0 #
 # push
 echo "Pushing..."
 git push -q https://7h3v01d:$PASS@github.com/7h3v01d/inz.git master
