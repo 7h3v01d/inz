@@ -82,7 +82,7 @@ case "$?" in
 		exit 0
 	;;
 	*)
-		echo "ERROR: unable to commit changes, quitting... $?"
+		echo "ERROR: unable to commit changes, quitting..."
 		exit 1
 	;;
 esac
@@ -90,3 +90,23 @@ esac
 # push
 echo "Pushing..."
 git push -q https://7h3v01d:$PASS@github.com/7h3v01d/inz.git master
+if [ $? -ne 0 ];
+then
+	echo "ERROR: unable to push changes. quitting..."
+	exit 1
+fi
+
+# remove zip archve if exists
+if [ -f $ZA ];
+then
+	echo "$ZA exists, removing..."
+	rm -f $ZA
+	if [ $? -ne 0 ];
+	then
+		echo "ERROR: $ZA could not be removed, quitting..."
+		exit 2
+	fi
+fi
+
+# done
+echo "done!"
