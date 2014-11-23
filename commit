@@ -99,7 +99,7 @@ fi
 # remove zip archve if exists
 if [ -f $ZA ];
 then
-	echo "$ZA exists, removing..."
+	echo "$ZA zip archive cleanup..."
 	rm -f $ZA
 	if [ $? -ne 0 ];
 	then
