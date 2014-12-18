@@ -117,4 +117,4 @@ then
 fi
 
 # done
-echo "Done!"
+echo ${DM[$MN]}
