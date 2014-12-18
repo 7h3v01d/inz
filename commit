@@ -4,6 +4,14 @@
 TB=inz.tar
 ZA=inz.zip
 
+# done messages
+DM=("Done!" "Good job!" "Well done!" "Oh, you're good!" "Marvelous!" "OK, now go rest ;-)")
+
+# message number
+MN=$RANDOM
+let "MN %= ${#DM[*]}"
+
+
 # remove tarball if exists
 if [ -f $TB ];
 then
