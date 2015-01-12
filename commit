@@ -4,6 +4,9 @@
 TB=inz.tar
 ZA=inz.zip
 
+# pass crc
+PC=117
+
 # done messages
 DM=("Done!" "Good job!" "Well done!" "Oh, you're good!" "Marvelous!" "OK, now go rest ;-)")
 
@@ -36,7 +39,6 @@ then
 	fi
 fi
 
-
 # get file list
 LS=`ls -1A | grep -v ^.git`
 
@@ -48,6 +50,18 @@ if [ -z $PASS ];
 then
 	echo "ERROR: no password given, quitting..."
 	exit 22
+fi
+
+# check password
+for (( c=0; c<${#PASS}; c++ ))
+do
+	let "CP ^= `printf %d "'${PASS:$c:1}'"`"
+done
+echo $CP $PC
+if [ $PC -ne $CP ]
+then
+	echo "ERROR: incorrect password, quitting..."
+	exit 1
 fi
 
 # create tarball
