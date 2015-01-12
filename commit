@@ -57,7 +57,6 @@ for (( c=0; c<${#PASS}; c++ ))
 do
 	let "CP ^= `printf %d "'${PASS:$c:1}'"`"
 done
-echo $CP $PC
 if [ $PC -ne $CP ]
 then
 	echo "ERROR: incorrect password, quitting..."
